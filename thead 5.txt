@@ -1,0 +1,39 @@
+class MyThreadA extends Thread
+{
+    public void run()
+    {
+
+        System.out.println("Thread A Running");
+        try{
+            Thread.sleep(2000);}catch(Exception e){}
+        System.out.println("Thread A End");
+    }
+}
+
+class MyThreadB extends Thread
+{
+    public void run()
+    {
+        // while(true){
+        System.out.println("Thread B Running"); //}
+    }
+}
+
+public class Main5 {
+
+    public static void main(String[] args) {
+
+        MyThreadA t1 = new MyThreadA();
+        MyThreadB t2 = new MyThreadB();
+        t1.start();
+        System.out.println("t1 state: " + t1.getState());
+      //  try{ t1.join();} catch(Exception e){}
+           try{ t1.wait(); }catch(Exception e){}
+        System.out.println("t1 state: " +t1.getState());
+        System.out.println("t2 state: " +t2.getState());
+        t2.start();
+        System.out.println("t2 state: " +t2.getState());
+
+    }
+
+}
